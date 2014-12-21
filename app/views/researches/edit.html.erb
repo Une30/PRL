@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PRL</title>
+	    <link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+    	<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+    	<link rel="stylesheet" href="css/responsiveslides.css">
+	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	    <script src="js/responsiveslides.min.js"></script>
+		<script>
+        // You can also use "$(window).load(function() {"
+	        $(function () {  
+        	// Slideshow 1
+            	$("#slider1").responsiveSlides({
+            		maxwidth: 1600,
+            		speed: 600
+            	});
+      		});
+      </script>
+	</head>
+	<body>
+        <div class="header-nav">
+          <div class="wrap">
+          <div class="left-nav">
+            <ul>
+              <li><%= link_to "Home", {:controller => "home"} %></li>
+              <li><%= link_to "Researches", researches_path %></li>
+              <li><%= link_to "Publications", publications_path %></li>
+              <li><%= link_to "Group", profiles_path %></li>
+              <li> <%= link_to "Alumni", {:controller => "alumni"} %></li>
+              <li><%= link_to "Gallery", pictures_path %></li>
+              <li><a href="#">Contact</a></li>
+            </ul>
+          </div>
+          <div class="clear"> </div>
+        </div>
+        <!---start-search---->
+      </div>
+		<div class="wrap">
+			<div class="content">
+				<h3 id = "new_head">Editing Research</h3>
+				<%= render 'form' %>
+				<%= link_to 'Show', @research %> |
+				<%= link_to 'Back', researches_path %>
+			</div>
+		</div>
+	</body>
+</html>

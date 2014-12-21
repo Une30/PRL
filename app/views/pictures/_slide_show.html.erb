@@ -1,0 +1,27 @@
+<html>
+	<head>
+		<title>PRL</title>
+		<link href="css/style.css" rel="stylesheet" type="text/css"  media="all" />
+		<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" href="css/responsiveslides.css">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+		<script src="js/responsiveslides.min.js"></script>
+		<script>
+	        $(function () {
+			    $("#slider1").responsiveSlides({
+		    	    maxwidth: 1600,
+		        	speed: 600
+		      	});
+			});
+		</script>
+	</head>
+	<body>
+		<div class="image-slider">
+		    <ul class="rslides" id="slider1">
+				<% @slides.each do |slide| %>
+				    <%=image_tag slide.avatar, {:alt => "" ,:class => "slidephoto"}%>
+				<%end%>
+			</ul>
+		</div>
+	</body>
+</html>

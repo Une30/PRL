@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRL</title>
+      <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+        <div class="header-nav">
+          <div class="wrap">
+              <div class="left-nav">
+                <ul>
+                  <li><%= link_to "Home", {:controller => "home"} %></li>
+                  <li><%= link_to "Researches", researches_path %></li>
+                  <li><%= link_to "Publications", publications_path %></li>
+                  <li><%= link_to "Group", profiles_path %></li>
+                  <li><%= link_to "Alumni", {:controller => "alumni"} %></li>
+                  <li><%= link_to "Gallery", albums_path %></li>
+                  <li><%= link_to "Contact", {:controller => "contact"} %></li>
+                </ul>
+              </div>
+              <div class="right-social-icons">
+                <ul>
+                  <%= render 'devise/menu/registration_items' %>
+                  <%= render 'devise/menu/login_items' %>
+                </ul>
+              </div>
+              <div class="clear"> </div>
+          </div>
+        </div>
+    	<div class="wrap">
+    		<div class="content">
+				<p id="notice"><%= notice %></p>
+				<h1>
+					Title of Project:
+  					<%= @abstract_file.project.title %>   
+  					<br><br><br>
+  				</h1><p>
+  					<p><%=image_tag "pdf_icon.jpeg",{:width => "3%"}%></p>
+  					<%= link_to 'Download PDF File', @abstract_file.pdf.url %>
+				</p>
+				<br><br>
+				<%if current_user and current_user.profile.isAdmin%>
+          <%= link_to 'Edit', edit_abstract_file_path(@abstract_file) %> |
+  				<%= link_to 'Back', abstract_files_path %> | 
+      		<%= link_to 'Destroy', @abstract_file, method: :delete, data: { confirm: 'Are you sure?'} %>
+        <%end%>
+			</div>
+		</div>
+	</body>
+</html>
+

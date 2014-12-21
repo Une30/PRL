@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRL</title>
+      <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="header-nav">
+      <div class="wrap">
+        <div class="left-nav">
+          <ul>
+            <li><%= link_to "Home", {:controller => "home"} %></li>
+            <li><%= link_to "Researches", researches_path %></li>
+            <li><%= link_to "Publications", publications_path %></li>
+            <li><%= link_to "Group", profiles_path %></li>
+            <li><%= link_to "Alumni", {:controller => "alumni"} %></li>
+            <li><%= link_to "Gallery", albums_path %></li>
+            <li><%= link_to "Contact", {:controller => "contact"} %></li>
+          </ul>
+        </div>
+        <div class="right-social-icons">
+          <ul>
+            <%= render 'devise/menu/registration_items' %>
+            <%= render 'devise/menu/login_items' %>
+          </ul>
+        </div>
+        <div class="clear"> </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="content">
+        <p id="notice"><%= notice %></p>
+        <div class="profile_body">       
+          <br>
+          <div class="listimg profile_pic" align="center">
+            <%= image_tag @profile.avatar  ,{:class =>"profilepic"}%>
+          </div>
+          <div class="profile_text">
+            <br><br>
+            <%if @profile.username!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <h2><%= @profile.username %></h2>
+            <%end%>
+            <br>
+            <%if @profile.user.email!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <!--<h3>Email1: </h3>
+              <p><%= @profile.user.email %></p>-->
+            <%end%>
+            <br>
+            <%if @profile.email2!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <h3>E-mail: </h3>
+              <p><%= @profile.email2 %></p>
+            <%end%>
+            <br><br>
+            <%if @profile.current_position!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <h3>Current Position: </h3>
+              <p><%= @profile.current_position %></p>
+            <%end%>
+            <br>
+          </div>
+
+          <h1>Education</h1>
+          <%if @profile.phD_education!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <div class="bold_italic"> * Doctor of Philosophy </div>
+            <%= @profile.phD_education %>
+            <%if @profile.phD_thesis!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <h4>Thesis: <%= @profile.phD_thesis %></h4>
+              <%if @profile.phD_thesis_desc!= ""%>
+                <h5>Description: <%= @profile.phD_thesis_desc %></h5>
+              <%end%>
+            <%end%>
+          <%end%>
+          <br>
+          <%if @profile.MSc_education != "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <div class="bold_italic"> * Master of Science </div>
+            <%= @profile.MSc_education%>
+            <%if @profile.MSc_thesis!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <h4>Thesis: <%= @profile.MSc_thesis %></h4>
+              <%if @profile.MSc_thesis_desc!= ""%>
+                <h5>Description: <%= @profile.MSc_thesis_desc %></h5>
+              <%end%>
+            <%end%>
+          <%end%>
+          <br>
+          <%if @profile.BSc_education!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <div class="bold_italic"> * Bachelor of Science </div>
+            <%= @profile.BSc_education%>
+            <%if @profile.BSc_thesis!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <h4>Thesis: <%= @profile.BSc_thesis %></h4>
+              <%if @profile.BSc_thesis_desc!= ""%>
+                <h5>Description: <%= @profile.BSc_thesis_desc %></h5>
+              <%end%>
+            <%end%>
+          <%end%>
+          <br>
+          <%if @profile.intern_title!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <div class="bold_italic"> * Internship:  </div>
+            <%= @profile.intern_title %>
+            <%if @profile.intern_desc!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+              <h5>Description: <%= @profile.intern_desc %></h5>
+            <%end%>
+          <%end%>
+          <%if @profile.publications.size > 0%>
+            <hr>
+            <h1>Publications: </h1>
+            <% @profile.publications.each do |pub|%>
+              - <%= pub.author %>
+              <div class="bold_text"><%= pub.title %></div>
+              <div class="italic_text"><%= pub.journal %></div>
+              <%= pub.other %>
+              <%= pub.year %>
+            <% end %>
+          <%end%>
+          <%if @profile.projects.size>0%>
+            <hr>
+            <h1>Projects:</h1>
+            <% @profile.projects.each do |proj|%>
+              <h3>* <%= proj.title %></h3>
+              <%= link_to "Read More" ,:controller => 'projects',:action => 'show', :id => proj.id %>
+            <% end %>
+          <%end%>            
+          <hr>
+          <%if @profile.website!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <br>
+            <div class="bold_italic"> * Website:  </div>
+            <%= @profile.website %>
+          <%end%>
+          <%if @profile.linked_in!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <br>
+            <div class="bold_italic"> * Linked_in:  </div>
+            <%= @profile.linked_in %>
+          <%end%>
+          <%if @profile.research_gate!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <br>
+            <div class="bold_italic"> * Research Gate:  </div>
+            <%= @profile.research_gate %>
+          <%end%>
+          <%if @profile.google_scholar!= "" or (current_user and (current_user.profile.isAdmin or current_user.profile.id == @profile.id))%>
+            <br>
+            <div class="bold_italic"> * Google Scholar:  </div>
+            <%= @profile.google_scholar %>
+          <%end%>
+          <br><hr>
+          
+          
+          <br><br>
+           <%if current_user and current_user.profile.isAdmin%>
+          <h1>Other Data:</h1>
+            <h3>Is phD Alumnus: </h3>
+            <p><%= @profile.phD_alumnus %></p>
+            <h3>Is MSc Alumnus: </h3>
+            <p><%= @profile.MSc_alumnus %></p>
+            <h3>Is BSc Alumnus: </h3>
+            <p><%= @profile.BSc_alumnus %></p>
+            <h3>Is Director: </h3>
+            <p><%= @profile.is_director %></p>
+            <h3>Is Research Assistant: </h3>
+            <p><%= @profile.is_assistant %></p>
+            <h3>Is PhD Student: </h3>
+            <p><%= @profile.is_phd %></p>
+            <h3>Is MSc Student: </h3>
+            <p><%= @profile.is_msc %></p>
+            <h3>Is BSc Student: </h3>
+            <p><%= @profile.is_bsc %></p>
+            <h3>Is Intern: </h3>
+            <p><%= @profile.is_intern %></p>
+            <h3>PhD entrance year: </h3>
+            <p><%= @profile.phD_entrance_year %></p>
+            <h3>PhD graduation year: </h3>
+            <p><%= @profile.phD_graduation_year %></p>
+            <h3>MSc entrance year: </h3>
+            <p><%= @profile.MSc_entrance_year %></p>
+            <h3>MSc graduation year: </h3>
+            <p><%= @profile.MSc_graduation_year %></p>
+            <h3>BSc entrance year: </h3>
+            <p><%= @profile.BSc_entrance_year %></p>
+            <h3>BSc graduation year: </h3>
+            <p><%= @profile.BSc_graduation_year %></p>
+            <h3>Intern entrance year: </h3>
+            <p><%= @profile.guest_entrance_year %></p>
+            <h3>Guest graduation year: </h3>
+            <p><%= @profile.guest_graduation_year %></p>
+            <h3>Is admin: </h3>
+            <p><%= @profile.isAdmin %></p>
+            <%= link_to 'Edit', edit_profile_path(@profile) %> |
+            <%= link_to 'Back', profiles_path %> | 
+            <%= link_to 'Destroy', @profile, method: :delete, data: { confirm: 'Are you sure?'} %>
+          <%end%>
+        </div>
+        <br>
+      </div>
+    </div>
+  </body>
+</html>

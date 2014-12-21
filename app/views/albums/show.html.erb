@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PRL</title>
+   	<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://blueimp.github.io/Gallery/css/blueimp-gallery.min.css">
+    <script>
+      $('.carousel').carousel({
+        interval:2000 //2000 milliseconds = 2s
+      });
+    </script>
+	</head>
+	<body>
+    <div class="header-nav">
+    	<div class="wrap">
+        <div class="left-nav">
+      		<ul>
+	    	    <li><%= link_to "Home", {:controller => "home"} %></li>
+    		    <li><%= link_to "Researches", researches_path %></li>
+	    	  	<li><%= link_to "Publications", publications_path %></li>
+            <li><%= link_to "Group", profiles_path %></li>
+    	   		<li> <%= link_to "Alumni", {:controller => "alumni"} %></li>
+    	    	<li><%= link_to "Gallery", albums_path %></li>
+  	    	 	<li><%= link_to "Contact", {:controller => "contact"} %></li>  	       
+          </ul>
+	      </div>
+	     	<div class="right-social-icons">
+				  <ul>
+				    <%= render 'devise/menu/registration_items' %>
+  					<%= render 'devise/menu/login_items' %>
+			    </ul>
+	      </div>
+        <div class="clear"> </div>
+      </div>
+    </div>
+		<div class="wrap">
+			<div class="content">
+        <p id="notice"><%= notice %></p>
+        <h3 id="new_head">Title: <%= @album.caption %></h3>
+        <div class="container">
+          <div class="row">
+            <div class="span12">
+              <div id="myCarousel" class="carousel slide">
+                <div class="carousel-inner">
+                  <div class="item active">
+                    <div align="center" ><%= image_tag @album.avatar, {:alt => "" ,:class => "albumphoto"}%></div>
+                    <div class="carousel-caption">
+                    <p><%= @album.caption %></p>
+                    </div>
+                  </div>
+                  <% @album.pictures.each do |pic|%>                    
+                    <div class="item">
+                      <div align="center"><%=image_tag pic.avatar, {:class => "albumphoto"}%></div>
+                      <div class="carousel-caption">
+                        <p><%= pic.caption %></p>
+                      </div>
+                    </div>
+                  <%end%>
+                </div> 
+                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <%if current_user and current_user.profile.isAdmin%>
+          <div class="group">
+            <div class="section group">
+              <% @album.pictures.each do |pic|%>                    
+                <div class="grid_1_of_4 images_1_of_4">          
+                  <div align="center"><%=image_tag pic.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><%= pic.caption %></h3>
+                  <h3><%= pic.id %></h3>
+                  <td><%= link_to 'Edit', edit_picture_path(pic) %></td> |
+                  <td><%= link_to 'Destroy', pic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </div>
+              <%end%>
+            </div>
+          </div>
+          <%= link_to 'Edit', edit_album_path(@album) %> |
+          <%= link_to 'Back', albums_path %>
+        <%end%>
+    	</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>PRL</title>
+		<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+		<div class="clear"> </div>
+			<div class="header-nav">
+				<div class="wrap">
+					<div class="left-nav">
+						<ul>
+							<li class="active"><a href="#">Home</a></li>
+							<li><%= link_to "Researches", researches_path %></li>
+							<li><%= link_to "Publications", publications_path %></li>
+							<li><%= link_to "Group", profiles_path %></li>
+							<li> <%= link_to "Alumni", {:controller => "alumni"} %></li>
+							<li><%= link_to "Gallery", albums_path %></li>
+							<li><%= link_to "Contact", {:controller => "contact"} %></li>
+						</ul>
+					</div>
+					<div class="right-social-icons">
+						<ul>
+							<%= render 'devise/menu/registration_items' %>
+  							<%= render 'devise/menu/login_items' %>
+						</ul>
+					</div>
+					<div class="clear"> </div>
+				</div>
+			</div>
+			<div class="wrap">
+				<%= render :partial => '/pictures/slide_show'  %>
+				<div class="content">
+					<div class="allnews"><p><%= link_to "All Events" ,:controller => 'events'%></p></div>
+					<div class="section group">
+						<%= render :partial => '/events/new_events'  %>
+						<div class="grid_1_of_4 images_1_of_4 services">
+							<ul>
+								<script type="text/javascript">document.write('<script type="text/javascript" src="' + ('https:' == document.location.protocol ? 'https://' : 'http://') + 'feed.mikle.com/js/rssmikle.js"><\/script>');</script><script type="text/javascript">(function() {var params = {rssmikle_url: " http://www.sciencedaily.com/rss/matter_energy/nature_of_light.xml",rssmikle_frame_width: "300",rssmikle_frame_height: "400",rssmikle_target: "_blank",rssmikle_font: "Arial, Helvetica, sans-serif",rssmikle_font_size: "12",rssmikle_border: "off",responsive: "off",rssmikle_css_url: "",text_align: "left",text_align2: "left",corner: "off",scrollbar: "on",autoscroll: "on",scrolldirection: "up",scrollstep: "3",mcspeed: "20",sort: "Off",rssmikle_title: "on",rssmikle_title_sentence: "",rssmikle_title_link: "",rssmikle_title_bgcolor: "#FFD700",rssmikle_title_color: "#FFFFFF",rssmikle_title_bgimage: "",rssmikle_item_bgcolor: "#D1E7FF",rssmikle_item_bgimage: "",rssmikle_item_title_length: "55",rssmikle_item_title_color: "#0066FF",rssmikle_item_border_bottom: "on",rssmikle_item_description: "on",rssmikle_item_description_length: "150",rssmikle_item_description_color: "#666666",rssmikle_item_date: "gl1",rssmikle_timezone: "Etc/GMT",datetime_format: "%b %e, %Y %l:%M:%S %p",rssmikle_item_description_tag: "off",rssmikle_item_description_image_scaling: "off",article_num: "15",rssmikle_item_podcast: "off",keyword_inc: "",keyword_exc: "",};feedwind_show_widget_iframe(params);})();
+								</script>
+								<div style="font-size:10px; text-align:center; width:300;">
+									<a href="http://feed.mikle.com/" target="_blank" style="color:#CCCCCC;">RSS Feed Widget</a>
+								</div>
+							</ul>
+						</div>
+					</div>
+					<div class="image group">
+						<div class="grid span_2_of_3">
+							<h3>About Us</h3>
+							<p>The Photonics Research Lab (PRL) at the School of Electrical and Computer Engineering, University of Tehran, has the mission to provide a research environment for those graduate students of electrical engineering who are interested in photonics. </p>
+							<p>Our research line mainly includes:</p>
+							<ul>
+								<li>* Computational methods for analysis of passive and active optical components</li>
+							    <li>* Photonic crystals and their applications </li>
+							    <li>* Optical metamaterials</li>
+							    <li>* Plasmonics and its applications</li>
+							    <li>* Terahertz Engineering</li>
+    						</ul>
+							<p>Apart from the above topics, we also work on various projects related to antenna theory and engineering, as well as passive and active microwave systems. For detailed description of the ongoing projects visit Research.</p>
+						</div>
+						<div class="grid images_3_of_1"></div>
+					</div>
+				</div>
+				<div class="clear"> </div>
+			</div>
+		</div>
+	</body>
+</html>

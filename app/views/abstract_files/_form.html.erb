@@ -1,0 +1,25 @@
+<%= form_for(@abstract_file) do |f| %>
+  <% if @abstract_file.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@abstract_file.errors.count, "error") %> prohibited this abstract_file from being saved:</h2>
+      <ul>
+        <% @abstract_file.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <div class="blank_text"><%= f.label :Select_file %></div>
+    <div class="blank_text"><%= f.file_field :pdf%></div>
+  </div>
+  <br>
+  <div class="field">
+    <div class="blank_text"><%= f.label :Select_project %></div>
+    <div class="blank_text"><%= f.select :project_id, Project.all.collect {|x| [x.title, x.id]}, {}, :multiple => false %>
+    </div>
+  <div class="actions">
+    <div class="botton_form"><%= f.submit %></div>
+  </div>
+  <br><br><br>
+<% end %>

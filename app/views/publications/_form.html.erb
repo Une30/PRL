@@ -1,0 +1,52 @@
+<%= form_for(@publication) do |f| %>
+  <% if @publication.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@publication.errors.count, "error") %> prohibited this publication from being saved:</h2>
+
+      <ul>
+      <% @publication.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <div class="label_text"><%= f.label :author %><br></div>
+    <div class="blank_text"><%= f.text_field :author %></div>
+  </div>
+
+
+  <div class="field">
+    <div class="label_text"><%= f.label :title %><br></div>
+    <div class="blank_text"><%= f.text_field :title %></div>
+  </div>
+
+
+  <div class="field">
+    <div class="label_text"><%= f.label :journal %><br></div>
+    <div class="blank_text"><%= f.text_field :journal %></div>
+  </div>
+
+  <div class="field">
+    <div class="label_text"><%= f.label :other %><br></div>
+    <div class="blank_text"><%= f.text_field :other %></div>
+  </div>
+
+  <div class="field">
+    <div class="label_text"><%= f.label :year %><br></div>
+    <div class="blank_text"><%= f.text_field :year %></div>
+  </div>  
+  <div class="field">
+    <div class="label_text"><%= f.label :Image %><br></div>
+    <div class="blank_text"><%= f.file_field :avatar%></div>
+  </div>
+  <div class="field">
+    <div class="label_text"><%= f.label :People %><br></div>
+    <div class="blank_text"><%= f.select :profile_ids, Profile.all.collect {|x| [x.username, x.id]}, {}, :multiple => true %></div>
+
+  <div class="actions">
+    <div class="botton_form"><%= f.submit %></div>
+  </div>
+<% end %>

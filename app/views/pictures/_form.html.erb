@@ -1,0 +1,35 @@
+<%= form_for(@picture) do |f| %>
+  <% if @picture.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@picture.errors.count, "error") %> prohibited this picture from being saved:</h2>
+
+      <ul>
+      <% @picture.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :caption %><br>
+    <%= f.text_area :caption %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :Show_in_slide %><br>
+    <%= f.check_box :inslide %>
+  </div>
+
+  <div class="field">
+    <%= f.label :Select_image %><br>
+    <%= f.file_field :avatar%>
+  </div>
+  <%= f.label :Select_album %><br>
+  <%= f.select :album_id, Album.all.collect {|x| [x.caption, x.id]}, {}, :multiple => false %>
+
+  <div class="actions">
+  <br><br>
+    <%= f.submit %>
+  </div>
+<% end %>

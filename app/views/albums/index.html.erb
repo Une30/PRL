@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRL</title>
+      <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+        <div class="header-nav">
+          <div class="wrap">
+              <div class="left-nav">
+                <ul>
+                  <li><%= link_to "Home", {:controller => "home"} %></li>
+                  <li><%= link_to "Researches", researches_path %></li>
+                  <li><%= link_to "Publications", publications_path %></li>
+                  <li><%= link_to "Group", profiles_path %></li>
+                  <li> <%= link_to "Alumni", {:controller => "alumni"} %></li>
+                  <li class="active"><a href="#">Gallery</a></li>
+                  <li><%= link_to "Contact", {:controller => "contact"} %></li>
+                </ul>
+              </div>
+              <div class="right-social-icons">
+                <ul>
+                  <%= render 'devise/menu/registration_items' %>
+                  <%= render 'devise/menu/login_items' %>
+                </ul>
+              </div>
+              <div class="clear"> </div>
+          </div>
+        <!---start-search---->
+        </div>
+    <div class="wrap">
+      <div class="content">
+        <h3 id="new_head">Albums</h3>
+        <div class="group">
+            <div class="section group">
+              <% @albums.each do |album| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <%= link_to (image_tag (album.avatar) ,{:class => 'img-responsive' , :alt => 'Responsive image'}), {:action => 'show', :id => album.id} %>
+                  <h3><%= album.caption %></h3>
+                  <%= album.year %>
+                  <td><%= link_to 'Edit', edit_album_path(album) %></td>
+                  <td><%= link_to 'Destroy', album, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+                </div>
+              <% end %>
+            </div>                 
+          </div>
+
+<br>
+
+<%= link_to 'New Album', new_album_path %> | 
+<%= link_to 'New Picture', new_picture_path %>
+      </div>
+    </div>
+  </body>
+</html>

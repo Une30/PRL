@@ -1,0 +1,211 @@
+<%= form_for(@profile) do |f| %>
+  <% if @profile.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+
+      <ul>
+      <% @profile.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+<div class="field">
+    <div class="label_text"><%= f.label :User %>:<br></div>
+    <div class="blank_text"><%= f.select :user_id, User.all.collect {|x| [x.email, x.id]}, {}, :multiple => false %></div>
+  </div>
+
+  <div class="field">
+    <%= f.label :username %><br>
+    <%= f.text_field :username %>
+  </div>
+
+<div class="field">
+    <%= f.label :current_position %><br>
+    <%= f.text_field :current_position %>
+  </div>
+
+
+<div class="field">
+    <%= f.label :email2 %><br>
+    <%= f.text_field :email2 %>
+</div>
+
+<div class="field">
+    <%= f.label :website %><br>
+    <%= f.text_field :website %>
+</div>
+
+<div class="field">
+    <%= f.label :linked_in %><br>
+    <%= f.text_field :linked_in %>
+</div>
+      
+<div class="field">
+    <%= f.label :research_gate %><br>
+    <%= f.text_field :research_gate %>
+</div>
+      
+<div class="field">
+    <%= f.label :google_scholar %><br>
+    <%= f.text_field :google_scholar %>
+</div>
+  
+<div class="field">
+    <%= f.label :isDirector %><br>
+    <%= f.check_box :is_director %>
+  </div>
+
+  <div class="field">
+    <%= f.label :isAssistant %><br>
+    <%= f.check_box :is_assistant %>
+  </div>
+
+  <div class="field">
+    <%= f.label :isPhd %><br>
+    <%= f.check_box :is_phd %>
+  </div>
+
+  <div class="field">
+    <%= f.label :isMsc %><br>
+    <%= f.check_box :is_msc %>
+  </div>
+  
+    <div class="field">
+    <%= f.label :isBsc %><br>
+    <%= f.check_box :is_bsc %>
+  </div>
+
+<div class="field">
+    <%= f.label :is_intern %><br>
+    <%= f.check_box :is_intern %>
+</div>
+
+    <div class="field">
+    <%= f.label :phD_education %><br>
+    <%= f.text_field :phD_education %>
+  </div>
+  <div class="field">
+    <%= f.label :MSc_education %><br>
+    <%= f.text_field :MSc_education %>
+  </div>
+  <div class="field">
+    <%= f.label :BSc_education %><br>
+    <%= f.text_field :BSc_education %>
+  </div>
+  <div class="field">
+    <%= f.label :phD_alumnus %><br>
+    <%= f.check_box :phD_alumnus %>
+  </div>
+<div class="field">
+    <%= f.label :MSc_alumnus %><br>
+    <%= f.check_box :MSc_alumnus %>
+  </div>
+  <div class="field">
+    <%= f.label :BSc_alumnus %><br>
+    <%= f.check_box :BSc_alumnus %>
+  </div>
+
+<div class="field">
+    <%= f.label :guest_alumnus %><br>
+    <%= f.check_box :guest_alumnus %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phD_thesis %><br>
+    <%= f.text_field :phD_thesis %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phD_thesis_desc %><br>
+    <%= f.text_field :phD_thesis_desc %>
+  </div>
+
+     
+  <div class="field">
+    <%= f.label :phD_entrance_year %><br>
+    <%= f.text_field :phD_entrance_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :phD_graduation_year %><br>
+    <%= f.text_field :phD_graduation_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :MSc_thesis %><br>
+    <%= f.text_field :MSc_thesis %>
+  </div>
+
+  <div class="field">
+    <%= f.label :MSc_thesis_desc %><br>
+    <%= f.text_field :MSc_thesis_desc %>
+  </div>
+
+  <div class="field">
+    <%= f.label :MSc_entrance_year %><br>
+    <%= f.text_field :MSc_entrance_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :MSc_graduation_year %><br>
+    <%= f.text_field :MSc_graduation_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :BSc_thesis %><br>
+    <%= f.text_field :BSc_thesis %>
+  </div>
+
+  <div class="field">
+    <%= f.label :BSc_thesis_desc %><br>
+    <%= f.text_field :BSc_thesis_desc %>
+  </div>
+
+  <div class="field">
+    <%= f.label :BSc_entrance_year %><br>
+    <%= f.text_field :BSc_entrance_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :BSc_graduation_year %><br>
+    <%= f.text_field :BSc_graduation_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :intern_title %><br>
+    <%= f.text_field :intern_title %>
+  </div>
+
+  <div class="field">
+    <%= f.label :intern_desc %><br>
+    <%= f.text_field :intern_desc %>
+  </div>
+
+  <div class="field">
+    <%= f.label :guest_entrance_year %><br>
+    <%= f.text_field :guest_entrance_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :guest_graduation_year %><br>
+    <%= f.text_field :guest_graduation_year %>
+  </div>
+
+  <div class="field">
+    <%= f.label :isAdmin %><br>
+    <%= f.check_box :isAdmin %>
+  </div>
+
+  
+ <p>
+    <%= f.label :avatar %><br />
+    <%= f.file_field :avatar %>
+  </p>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

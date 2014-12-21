@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRL</title>
+      <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+        <div class="header-nav">
+          <div class="wrap">
+              <div class="left-nav">
+                <ul>
+                  <li><%= link_to "Home", {:controller => "home"} %></li>
+                  <li><%= link_to "Researches", researches_path %></li>
+                  <li><%= link_to "Publications", publications_path %></li>
+                  <li><%= link_to "Group", profiles_path %></li>
+                  <li><%= link_to "Alumni", {:controller => "alumni"} %></li>
+                  <li><%= link_to "Gallery", albums_path %></li>
+                  <li><%= link_to "Contact", {:controller => "contact"} %></li>
+                </ul>
+              </div>
+              <div class="right-social-icons">
+                <ul>
+                  <%= render 'devise/menu/registration_items' %>
+                  <%= render 'devise/menu/login_items' %>
+                </ul>
+              </div>
+              <div class="clear"> </div>
+          </div>
+        <!---start-search---->
+        </div>
+    <div class="wrap">
+      <div class="content">
+            <div class="event_text">
+            <% @events.each do |event| %>
+                <%= image_tag event.avatar, {:alt => "home image",:class =>"eventpic"}%>
+                <h3><b><%=event.title%></b></h3>            
+                <p><%=truncate(event.content, :length => 300)%></p>
+                  <div class="readmore"><span><%= link_to "Read More" ,event %></span></div>
+                  <hr><br>
+            <%end%>
+            </div>
+<%if current_user and current_user.profile.isAdmin%>
+<%= link_to 'New Event', new_event_path %>
+<%end%>
+          <!---End-content---->
+          </div>
+        </div>
+
+  </body>
+</html>
+
+
+

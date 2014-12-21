@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRL</title>
+      <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+        <div class="header-nav">
+          <div class="wrap">
+              <div class="left-nav">
+                <ul>
+                  <li><%= link_to "Home", {:controller => "home"} %></li>
+                  <li><%= link_to "Researches", researches_path %></li>
+                  <li><%= link_to "Publications", publications_path %></li>
+                  <li><%= link_to "Group", profiles_path %></li>
+                  <li><%= link_to "Alumni", {:controller => "alumni"} %></li>
+                  <li><%= link_to "Gallery", albums_path %></li>
+                  <li><%= link_to "Contact", {:controller => "contact"} %></li>
+                </ul>
+              </div>
+              <div class="right-social-icons">
+                <ul>
+                  <%= render 'devise/menu/registration_items' %>
+                  <%= render 'devise/menu/login_items' %>
+                </ul>
+              </div>
+              <div class="clear"> </div>
+          </div>
+        </div>
+    <div class="wrap">
+      <div class="content">
+        <div class="project">
+          <p id="notice"><%= notice %></p>
+          <h2><%= @project.title %></h2>
+          <h3>Description: </h3>
+          <p><%= @project.description %></p>
+          <div align="center"><%= image_tag @project.avatar, {:alt => "home image"}%></div>          
+          <p><%=image_tag "pdf_icon.jpeg",{:width => "3%"}%></p>
+          <%@project.abstract_files.each do |file|%>
+            <p><%= link_to 'Report (.PDF)', file %></p> 
+          <%end%>
+          <h3>Research Area:</h3>
+          <p><%= link_to @project.research.title ,:controller => 'researches',:action => 'show', :id => @project.research.id %></p>
+          <br>
+          <h3>Researchers:</h3>
+          <% @project.profiles.each do |pro|%>
+            <p><%= link_to pro.username ,:controller => 'profiles',:action => 'show', :id => pro.id %></p>
+          <% end %>
+          
+          <br>
+          <%if current_user and current_user.profile.isAdmin%>
+            <%= link_to 'Add file', new_abstract_file_path %> | 
+            <%= link_to 'Edit', edit_project_path(@project) %> |
+            <%= link_to 'Back', projects_path %> | 
+            <%= link_to 'Destroy', @project, method: :delete, data: { confirm: 'Are you sure?'} %>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

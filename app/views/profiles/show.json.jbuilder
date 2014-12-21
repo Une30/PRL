@@ -1,0 +1,1 @@
+json.extract! @profile, :id, :phD_education, :MSc_education, :BSc_education, :alumnus, :phD_thesis, :MSc_thesis, :BSc_thesis, :entrance_year, :graduation_year, :homepage, :isAdmin, :created_at, :updated_at

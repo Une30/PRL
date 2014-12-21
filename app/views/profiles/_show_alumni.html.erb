@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRL</title>
+      <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+        <div class="header-nav">
+          <div class="wrap">
+              <div class="left-nav">
+                <ul>
+                  <li><%= link_to "Home", {:controller => "home"} %></li>
+                  <li><%= link_to "Researches", researches_path %></li>
+                  <li><%= link_to "Publications", publications_path %></li>
+                  <li><%= link_to "Group", profiles_path %></li>
+                  <li class="active"><a href="#">Alumni</a></li>
+                  <li><%= link_to "Gallery", albums_path %></li>
+                  <li><%= link_to "Contact", {:controller => "contact"} %></li>
+                </ul>
+              </div>
+              <div class="right-social-icons">
+          <ul>
+              <%= render 'devise/menu/registration_items' %>
+                <%= render 'devise/menu/login_items' %>
+          </ul>
+        </div>
+              <div class="clear"> </div>
+          </div>
+        <!---start-search---->
+        </div>
+    <div class="wrap">
+      <div class="content">
+          <div class="group">
+            <h2>Former Ph.D. Students</h2>
+            <div class="section group">
+              <% @phd_alum.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><%= profile.username %></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="group">
+            <h2>Former M.Sc. Students</h2>
+            <div class="section group">
+              <% @msc_alum.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><%= profile.username %></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="group">
+            <h2>Former B.Sc. Students</h2>
+            <div class="section group">
+              <% @bsc_alum.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><%= profile.username %></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          <hr>
+          <div class="group">
+            <h2>Former Guest Students</h2>
+            <div class="section group">
+              <% @guest_alum.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><%= profile.username %></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        <%if current_user and current_user.profile.isAdmin%>
+          <%= link_to 'New Profile', new_profile_path %>
+        <%end%>
+      </div>
+    </div>
+  </body>
+</html>
+

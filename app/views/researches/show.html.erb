@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>PRL</title>
+    	<link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+	</head>
+	<body>
+        <div class="header-nav">
+          <div class="wrap">
+          <div class="left-nav">
+            <ul>
+              <li><%= link_to "Home", {:controller => "home"} %></li>
+              <li><%= link_to "Researches", researches_path %></li>
+              <li><%= link_to "Publications", publications_path %></li>
+              <li><%= link_to "Group", profiles_path %></li>
+              <li> <%= link_to "Alumni", {:controller => "alumni"} %></li>
+              <li><%= link_to "Gallery", albums_path %></li>
+              <li><%= link_to "Contact", {:controller => "contact"} %></li>
+            </ul>
+          </div>
+          <div class="right-social-icons">
+            <ul>
+              <%= render 'devise/menu/registration_items' %>
+              <%= render 'devise/menu/login_items' %>
+            </ul>
+          </div>
+          <div class="clear"> </div>
+        </div>
+        <!---start-search---->
+      </div>
+		<div class="wrap">
+			<div class="content">
+				<p id="notice"><%= notice %></p>
+				<p>
+					<h3 id = "new_head"><%= @research.title %></h3>
+				</p>
+				<p>
+          <br>
+					<div class="research_text"><%= simple_format(@research.description) %></div>
+				</p>
+        <br>
+				<div align="center"><%= image_tag @research.avatar%></div>
+        <hr>
+        <%if @research.projects.size > 0%>
+        <div class="label_text2">Related Projects:</div>
+        <br>
+				<td>
+          <div class="project">
+
+					   <% @research.projects.each do |proj|%>
+    					<div class="readmore">
+                <h3><%= proj.title %></h3>
+    					  <%= link_to "Read More" ,:controller => 'projects',:action => 'show', :id => proj.id %>
+              </div>
+              <br>
+    				<% end %>
+          </div>
+
+				</td>
+        <%end%>
+        <%if current_user and current_user.profile.isAdmin%>
+          <%= link_to 'Edit', edit_research_path(@research) %> |
+          <%= link_to 'Back', researches_path %> |
+          <%= link_to 'Destroy', @research, method: :delete, data: { confirm: 'Are you sure?'} %> | 
+          <%= link_to 'New Project', new_project_path %>
+        <%end%>
+			</div>
+		</div>
+	</body>
+</html>
+

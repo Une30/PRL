@@ -1,0 +1,2 @@
+module AbstractFilesHelper
+end

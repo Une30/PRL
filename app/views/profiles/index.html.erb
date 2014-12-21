@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>PRL</title>
+      <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+        <div class="header-nav">
+          <div class="wrap">
+              <div class="left-nav">
+                <ul>
+                  <li><%= link_to "Home", {:controller => "home"} %></li>
+                  <li><%= link_to "Researches", researches_path %></li>
+                  <li><%= link_to "Publications", publications_path %></li>
+                  <li class="active"><a href="#">Group</a></li>
+                  <li><%= link_to "Alumni", {:controller => "alumni"} %></li>
+                  <li><%= link_to "Gallery", albums_path %></li>
+                  <li><%= link_to "Contact", {:controller => "contact"} %></li>
+                </ul>
+              </div>
+              <div class="right-social-icons">
+                <ul>
+                  <%= render 'devise/menu/registration_items' %>
+                  <%= render 'devise/menu/login_items' %>
+                </ul>
+              </div>
+              <div class="clear"> </div>
+          </div>
+        <!---start-search---->
+        </div>
+    <div class="wrap">
+      <div class="content">
+          <div class="group">
+            <h2>Director</h2>
+            <div class="section group">
+              <% @directors.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><%= profile.username %></h3>
+                  <h3><%= profile.user.email %></h3>
+                  <div class="button"><%= link_to "view profile", profile%></div>
+                </div>
+              <% end %>
+            </div>                 
+          </div>
+          <hr>
+          <div class="group">
+            <h2>Research Assistants</h2>
+            <div class="section group">
+              <% @assistants.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><%= profile.username %></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="group">
+            <h2>ph.D. Students</h2>
+            <div class="section group">
+              <% @phd.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><b><%= profile.username %></b></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="group">
+            <h2>MSc. Students</h2>
+            <div class="section group">
+              <% @msc.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><b><%= profile.username %></b></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="group">
+            <h2>Undergraduate Students</h2>
+            <div class="section group">
+              <% @bsc.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><b><%= profile.username %></b></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="group">
+            <h2>Intern</h2>
+            <div class="section group">
+              <% @intern.each do |profile| %>
+                <div class="grid_1_of_4 images_1_of_4">
+                  <div align="center"><%= image_tag profile.avatar , {:class=>"profile_pic"}%></div>
+                  <h3><b><%= profile.username %></b></h3>
+                  <div class="button"><span><%= link_to "view profile", profile%></span></div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+        </div>
+        <%= link_to 'New Profile', new_profile_path %>
+      </div>
+      <div class="clear"> </div>
+    </div>
+  </body>
+</html>

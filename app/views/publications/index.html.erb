@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>PRL</title>
+    <link href='http://fonts.googleapis.com/css?family=Ropa+Sans' rel='stylesheet' type='text/css'>
+  </head>
+  <body>
+    <div class="header-nav">
+      <div class="wrap">
+        <div class="left-nav">
+          <ul>
+            <li><%= link_to "Home", {:controller => "home"} %></li>
+            <li><%= link_to "Researches", researches_path %></li>
+            <li class="active"><a href="#">Publications</a></li>
+            <li><%= link_to "Group", profiles_path %></li>
+            <li> <%= link_to "Alumni", {:controller => "alumni"} %></li>
+            <li><%= link_to "Gallery", albums_path %></li>
+            <li><%= link_to "Contact", {:controller => "contact"} %></li>
+          </ul>
+        </div>
+        <div class="right-social-icons">
+          <ul>
+            <%= render 'devise/menu/registration_items' %>
+            <%= render 'devise/menu/login_items' %>
+          </ul>
+        </div>
+        <div class="clear"> </div>
+      </div>
+      <!---start-search---->
+    </div>
+    <!---end-header---->
+    <!--start-image-slider---->
+    <div class="wrap">
+        <!---start-content---->
+        <div class="content">
+          <%i = 1%>
+          <%if @publications.size > 0 %>
+            <%year = @publications.first.year%>
+          <%end%>
+          <div class = "publication_year"><%= year%></div>
+          <br>
+          <% @publications.each do |publication| %>
+            <%if publication.year != year%>
+            <br><br>
+            <div class = "publication_year"><%= year=publication.year%></div>
+            <hr>
+            <%end%>
+            <div align="justify">
+            [<%=i%>]
+            <%= publication.author %><%i = i + 1%>
+            <div class="bold_text"><%= publication.title %></div>
+            <div class="italic_text"><%= publication.journal %></div>
+            <%= publication.other %>
+            <%= publication.year %>
+            </div>
+            <br><br>
+            <div align="center"><%= image_tag publication.avatar, {:class =>"publicationpic"}%></div>
+            <br>
+            <%if current_user and current_user.profile.isAdmin%>
+              <%= link_to 'Edit', edit_publication_path(publication) %> | 
+              <%= link_to 'Destroy', publication, method: :delete, data: { confirm: 'Are you sure?' } %>
+            <%end%>
+            <br>
+          <% end %>
+        </div>
+        <br><br>
+        <%if current_user and current_user.profile.isAdmin%>
+          <%= link_to 'New Publication', new_publication_path %>
+        <%end%>
+        <!---End-content---->
+      </div>
+    </div>
+  </body>
+</html>

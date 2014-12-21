@@ -1,0 +1,28 @@
+<%if Event.all.size > 0%>
+<div class="grid_1_of_4 images_1_of_4">
+	<% first_news = Event.last%>
+	<h4><%=first_news.title%></h4>
+	<div align="center"><%=image_tag first_news.avatar , {:class=>"eventnews_pic"}%></div>
+	<p><%=truncate( first_news.content, :length => 200)%></p>
+   	<div class="button"><span><%= link_to "Read More" ,:controller => 'events',:action => 'show', :id => first_news.id %></span></div>
+</div>
+<%end%>
+<%if Event.all.size > 1%>
+<div class="grid_1_of_4 images_1_of_4">
+	<% second_news = Event.where("id < ?", first_news.id).order("id DESC").first %>	
+	<h4><%=second_news.title%></h4>
+	<div align="center"><%=image_tag second_news.avatar , {:class=>"eventnews_pic"}%></div>
+	<p><%=truncate( second_news.content, :length => 200)%></p>
+   	<div class="button"><span><%= link_to "Read More" ,:controller => 'events',:action => 'show', :id => second_news.id %></span></div>
+</div>
+<%end%>
+<%if Event.all.size > 2%>
+<div class="grid_1_of_4 images_1_of_4">
+	<% third_news = Event.where("id < ?", first_news.id).order("id DESC").second %>
+	<h4><%=third_news.title%></h4>
+	<div align="center"><%=image_tag third_news.avatar , {:class=>"eventnews_pic"}%></div>
+	<p><%=truncate(third_news.content, :length => 200)%></p>
+   	<div class="button"><span><%= link_to "Read More" ,:controller => 'events',:action => 'show', :id => third_news.id %></span></div>
+</div>
+<%end%>
+	

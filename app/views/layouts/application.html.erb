@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PRL</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  
+  
+<!--   <p class="notice"><%= notice %></p>
+   <p class="alert"><%= alert %></p>-->
+
+ <% if alert %>
+
+<%= alert %>
+<% end %> <% if notice %>
+
+<%= notice %>
+<% end %> 
+<!--<ul class="hmenu">
+  <%= render 'devise/menu/registration_items' %>
+  <%= render 'devise/menu/login_items' %>
+  
+</ul>-->
+<%=image_tag "logo.png", {:alt => "home image", :width => '100%'}%>
+<%= yield %> 
+<div class="footer"> 
+						<div class="wrap"> 
+				<!--		<div class="footer-left">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<li><a href="about.html">About us</a></li>
+								<li><a href="clients.html">Clients</a></li>
+								<li><a href="services.html">Services</a></li>
+								<li><a href="contact.html">Contact</a></li>
+							</ul>
+						</div>-->
+						<div class="footer-right">
+							<p>Copyright &#169 2014. All Rights Reserved | Photonics Research Group - University of Tehran</p>
+						</div>
+						<div class=="clear"> </div>
+					</div>
+					<div class="clear"> </div>
+
+<!--<%= javascript_include_tag 'application' %> <%= csrf_meta_tags %> -->
+<%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>

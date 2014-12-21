@@ -1,0 +1,27 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  phD_education: MyString
+  MSc_education: MyString
+  BSc_education: MyString
+  alumnus: false
+  phD_thesis: MyString
+  MSc_thesis: MyString
+  BSc_thesis: MyString
+  entrance_year: 2014-06-26
+  graduation_year: 2014-06-26
+  homepage: MyString
+  isAdmin: false
+
+two:
+  phD_education: MyString
+  MSc_education: MyString
+  BSc_education: MyString
+  alumnus: false
+  phD_thesis: MyString
+  MSc_thesis: MyString
+  BSc_thesis: MyString
+  entrance_year: 2014-06-26
+  graduation_year: 2014-06-26
+  homepage: MyString
+  isAdmin: false
